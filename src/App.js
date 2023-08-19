@@ -6,13 +6,15 @@ import { usePlaidLink } from 'react-plaid-link';
 
 const BASE_URL = 'http://localhost:3001'
 
-function PlaidAuth({publicToken}) {
+function PlaidAuth({publicToken, plaidData}) {
   const [account, setAccounts] = useState();
   useEffect(() => {
     async function fetchData() {
       try { 
         let accessToken = await axios.post(`${BASE_URL}/plaid/exchange_public_token`, {
-        public_token: publicToken
+        public_token: plaidData.public_token,
+        metadata: plaidData.metadata
+     
       });
         console.debug('access token:', accessToken.data);
         let auth = await axios.post(`${BASE_URL}/plaid/auth/get`, {
@@ -38,6 +40,7 @@ function PlaidAuth({publicToken}) {
 function App() {
   const [linkToken, setLinkToken] = useState();
   const [publicToken, setPublicToken] = useState();
+  const [plaidData, setPlaidData] = useState(); //includes public token and metadata
 
   useEffect(() => {
     async function fetch() {
@@ -51,12 +54,18 @@ function App() {
   const { open, ready } = usePlaidLink({
     token: linkToken,
     onSuccess: (public_token, metadata) => {
-      setPublicToken(public_token);
+      const data = {
+        public_token,
+        metadata
+      }
+      setPublicToken(public_token)
+      setPlaidData(data)
       // send public_token to server
+      //// will need to update
     },
   });
   
-  return publicToken ? (<PlaidAuth publicToken={publicToken} />) : (
+  return publicToken ? (<PlaidAuth publicToken={publicToken} plaidData={plaidData}/>) : (
     <button onClick={() => open()} disabled={!ready}>
       Connect a bank account
     </button>
