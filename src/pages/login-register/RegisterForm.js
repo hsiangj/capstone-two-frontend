@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import errorMap from '../utils/errorMap';
-import './login-register/Login-RegisterForm.css';
+import errorMap from '../../utils/errorMap';
+import './Login-RegisterForm.css';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';

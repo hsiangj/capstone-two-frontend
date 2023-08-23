@@ -25,6 +25,15 @@ class ExpenseBudApi {
     return res.token;
   }
 
+  static async login(data){
+    let res = await this.request(`auth/login`, data, 'post')
+    return res.token;
+  }
+
+  static async getCurrentUser(id){
+    let res = await this.request(`users/${id}`);
+    return res.user;
+  }
 
 }
 
