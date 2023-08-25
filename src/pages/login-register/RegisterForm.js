@@ -39,7 +39,7 @@ function RegisterForm({register}) {
     e.preventDefault();
     let result = await register(formData);
     if (result.success) {
-      history.push('/login'); // change this from login
+      history.push('/'); 
       setFormData(INITIAL_STATE);
       setFormErrors({});
     } else {

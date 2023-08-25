@@ -35,7 +35,7 @@ function LoginForm({login}) {
     e.preventDefault();
     let result = await login(formData);
     if (result.success) {
-      history.push('/'); // change this from /
+      history.push('/'); 
       setFormData(INITIAL_STATE);
       setFormErrors([]);
     } else {
@@ -61,8 +61,8 @@ function LoginForm({login}) {
           autoFocus
           value={formData.username}
           onChange={handleChange}
-          error={formErrors}
-          helperText={formErrors? 'Incorrect username/password': null}
+          error={formErrors.length}
+          helperText={formErrors.length? 'Incorrect username/password': null}
         />
         <TextField
           margin="dense"
@@ -74,8 +74,8 @@ function LoginForm({login}) {
           id="password"
           value={formData.password}
           onChange={handleChange}
-          error={formErrors}
-          helperText={formErrors? 'Incorrect username/password': null}
+          error={formErrors.length}
+          helperText={formErrors.length? 'Incorrect username/password': null}
         />
         <Button
           type="submit"
