@@ -4,6 +4,7 @@ import RegisterForm from '../pages/login-register/RegisterForm';
 import LoginForm from '../pages/login-register/LoginForm';
 import Home from '../pages/home/Home';
 import Dashboard from '../pages/dashboard/Dashboard';
+import ProfileForm from '../pages/profile/ProfileForm';
 import Main from '../components/Main';
 
 function Routes({register, login}) {
@@ -25,7 +26,12 @@ function Routes({register, login}) {
         <Main>
         <Dashboard />
         </Main>
-        
+      </Route>
+
+      <Route exact path="/profile">
+        <Main>
+        <ProfileForm />
+        </Main>
       </Route>
 
       <Redirect to="/" />

@@ -35,6 +35,11 @@ class ExpenseBudApi {
     return res.user;
   }
 
+  static async updateProfile(id, data) {
+    let res = await this.request(`users/${id}`, data, 'patch');
+    return res.user;
+  }
+
 }
 
 export default ExpenseBudApi;
