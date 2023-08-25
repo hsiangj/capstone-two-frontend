@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { decodeToken } from 'react-jwt';
 
+import './App.css';
+
 import ExpenseBudApi from './api/api';
+import UserContext from './context/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import Routes from './routes/Routes';
-import Navbar from './components/Navbar';
+import NavWithDrawer from './components/NavWithDrawer';
 import LoadingSpinner from './components/LoadingSpinner';
 
 
@@ -20,6 +23,31 @@ function App() {
     "currentUser=", currentUser,
     "userToken=", userToken,
   );
+
+  async function register(registerData){
+    try {
+      let result = await ExpenseBudApi.register(registerData);
+      setUserToken(result);
+      return {success: true};
+    } catch(err) {
+      return {success: false, err};
+    }
+  }
+
+  async function login(loginData){
+    try {
+      let token = await ExpenseBudApi.login(loginData);
+      setUserToken(token);
+      return {success: true};
+    } catch(err) {
+      return {success: false, err};
+    }
+  }
+
+  function logout() {
+    setCurrentUser(null);
+    setUserToken(null);
+  }
 
   useEffect(() => {
     console.debug("App useEffect load current user");
@@ -42,34 +70,16 @@ function App() {
     getCurrentUser();
   }, [userToken])
 
-  async function register(registerData){
-    try {
-      let result = await ExpenseBudApi.register(registerData);
-      setUserToken(result);
-      return {success: true};
-    } catch(err) {
-      return {success: false, err};
-    }
-  }
-
-  async function login(loginData){
-    try {
-      let token = await ExpenseBudApi.login(loginData);
-      setUserToken(token);
-      return {success: true};
-    } catch(err) {
-      return {success: false, err};
-    }
-  }
 
   if (!infoLoaded) return <LoadingSpinner />
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-        <Routes register={register} login={login} />
-    
+        <UserContext.Provider value={{currentUser}}>
+          <NavWithDrawer logout={logout}/>
+          <Routes register={register} login={login} />
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   )  
