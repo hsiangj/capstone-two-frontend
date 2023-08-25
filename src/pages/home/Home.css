@@ -1,0 +1,16 @@
+.Home-grid {
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+} 
+
+.Home h1 {
+  font-size: 3.5em;
+}
+
+.Home a {
+  color: black;
+}
+
