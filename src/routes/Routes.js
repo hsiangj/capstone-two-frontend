@@ -5,6 +5,7 @@ import LoginForm from '../pages/login-register/LoginForm';
 import Home from '../pages/home/Home';
 import Dashboard from '../pages/dashboard/Dashboard';
 import ProfileForm from '../pages/profile/ProfileForm';
+import BudgetList from '../pages/budgets/BudgetList';
 import Main from '../components/Main';
 
 function Routes({register, login}) {
@@ -25,6 +26,12 @@ function Routes({register, login}) {
       <Route exact path="/dashboard">
         <Main>
         <Dashboard />
+        </Main>
+      </Route>
+
+      <Route exact path="/budgets">
+        <Main>
+        <BudgetList />
         </Main>
       </Route>
 

@@ -19,6 +19,7 @@ class ExpenseBudApi {
       throw Array.isArray(message) ? message : [message];
     }
   }
+  /** User */
 
   static async register(data) {
     let res = await this.request(`auth/register`, data, 'post')
@@ -38,6 +39,30 @@ class ExpenseBudApi {
   static async updateProfile(id, data) {
     let res = await this.request(`users/${id}`, data, 'patch');
     return res.user;
+  }
+
+  /** Budget */
+
+  static async getAllBudgets(id) {
+    let res = await this.request(`users/${id}/budgets`);
+    return res.budgets;
+  }
+
+  static async updateBudget(userId, budgetId, data) {
+    let res = await this.request(`users/${userId}/budgets/${budgetId}`, data, 'patch');
+    return res.budget;
+  }
+
+  static async addBudget(userId, data) {
+    let res = await this.request(`users/${userId}/budgets`, data, 'post');
+    return res.budget;
+  }
+
+  /** Category */
+
+  static async getAllCategories() {
+    let res = await this.request(`categories`);
+    return res.categories;
   }
 
 }

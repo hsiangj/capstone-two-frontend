@@ -3,10 +3,11 @@
  */ 
 
 function userInitials(currUserObj) {
-  let firstName = currUserObj.firstName;
-  let lastName = currUserObj.lastName;
-
-  return (firstName.slice(0,1) + lastName.slice(0,1)).toUpperCase();
+  if(currUserObj !== null) {
+    let firstName = currUserObj.firstName;
+    let lastName = currUserObj.lastName;
+    return (firstName.slice(0,1) + lastName.slice(0,1)).toUpperCase();
+  }
 }
 
 export default userInitials;
