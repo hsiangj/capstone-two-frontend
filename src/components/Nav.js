@@ -18,6 +18,10 @@ function Navbar({logout, drawerWidth, handleDrawerToggle}) {
   const { currentUser } = useContext(UserContext);
   const initials = userInitials(currentUser);
 
+  console.debug(
+    'Navbar'
+  )
+
   return (
     <AppBar
         component="nav"

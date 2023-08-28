@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import UserContext from '../context/UserContext';
 import Navbar from './Nav';
 
+import './NavWithDrawer.css';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -25,13 +26,15 @@ function NavWithDrawer({logout}) {
   };
 
   const drawer = (
-    <div>
+    <div className='NavWithDrawer'>
       <Toolbar />
       <List>
         {drawerItems.map((item) => (
             <ListItem key={item} disablePadding>
               <ListItemButton>
-                <ListItemText primary={item} />
+                <NavLink to={`/${item.toLowerCase()}`}>
+                  <ListItemText primary={item} />
+                </NavLink>
               </ListItemButton>
             </ListItem>
           )
