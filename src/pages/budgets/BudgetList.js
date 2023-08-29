@@ -5,6 +5,8 @@ import ExpenseBudApi from "../../api/api";
 import BudgetCard from "./BudgetCard";
 
 import Alert from '@mui/material/Alert';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 function BudgetList() {
   const { currentUser } = useContext(UserContext);
@@ -58,7 +60,9 @@ function BudgetList() {
 
   return (
     <div>
-      <h1>This is budgetlist</h1>
+      <Typography component="h1" variant="h5">
+            Budgets
+      </Typography>
 
         {budgets.map(b => (
           <BudgetCard 
@@ -72,8 +76,9 @@ function BudgetList() {
           />
          
         ))}
-    
+   
     </div>
+    
     
 
   )

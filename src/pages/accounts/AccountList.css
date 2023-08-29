@@ -1,0 +1,13 @@
+.AccountList-add-account {
+  margin: 10px;
+}
+
+.AccountList-card-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.AccountList-card {
+  margin: 10px;
+
+}

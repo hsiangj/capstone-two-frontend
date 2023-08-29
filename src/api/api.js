@@ -58,13 +58,32 @@ class ExpenseBudApi {
     return res.budget;
   }
 
-  /** Category */
-
-  static async getAllCategories() {
-    let res = await this.request(`categories`);
-    return res.categories;
+  /** Plaid */
+  static async createLinkToken(data={}) {
+    let res = await this.request('plaid/create_link_token', data, 'post');
+    return res;
   }
 
+  static async exchangePublicToken(data) {
+    let res = await this.request('plaid/exchange_public_token', data, 'post');
+    return res.accessToken;
+  }
+
+  static async getAccountNum(data) {
+    let res = await this.request('plaid/auth/get', data, 'post');
+    return res;
+  }
+
+  /** Account */
+  static async getAllAccounts(id) {
+    let res = await this.request(`users/${id}/accounts`);
+    return res.accounts;
+  }
+
+  static async deleteAccount(user_id, account_id, data) {
+    let res = await this.request(`users/${user_id}/accounts/${account_id}`, data,'delete');
+    return res;
+  }
 }
 
 export default ExpenseBudApi;

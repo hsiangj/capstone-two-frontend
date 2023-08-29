@@ -6,6 +6,7 @@ import Home from '../pages/home/Home';
 import Dashboard from '../pages/dashboard/Dashboard';
 import ProfileForm from '../pages/profile/ProfileForm';
 import BudgetList from '../pages/budgets/BudgetList';
+import AccountList from '../pages/accounts/AccountList';
 import Main from '../components/Main';
 
 function Routes({register, login}) {
@@ -32,6 +33,12 @@ function Routes({register, login}) {
       <Route exact path="/budgets">
         <Main>
         <BudgetList />
+        </Main>
+      </Route>
+
+      <Route exact path="/accounts">
+        <Main>
+        <AccountList />
         </Main>
       </Route>
 
