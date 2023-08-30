@@ -5,7 +5,6 @@ import ExpenseBudApi from "../../api/api";
 import BudgetCard from "./BudgetCard";
 
 import Alert from '@mui/material/Alert';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 function BudgetList() {
@@ -14,7 +13,6 @@ function BudgetList() {
 
   console.debug(
     "BudgetList",
-    "currentUser", currentUser,
     "budgets=", budgets
   )
 

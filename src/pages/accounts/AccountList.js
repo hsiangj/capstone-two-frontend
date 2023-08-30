@@ -4,6 +4,7 @@ import UserContext from '../../context/UserContext';
 import PlaidLink from '../../PlaidLink';
 import ExpenseBudApi from '../../api/api';
 import AccountCard from './AccountCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 import './AccountList.css';
 import Typography from '@mui/material/Typography';
@@ -11,6 +12,7 @@ import Typography from '@mui/material/Typography';
 function AccountList() {
   const {currentUser} = useContext(UserContext);
   const [accounts, setAccounts] = useState([]);
+  const [infoLoaded, setInfoLoaded] = useState(false);
 
   console.debug(
     "AccountList",
@@ -28,6 +30,7 @@ function AccountList() {
     }
   }
 
+  //function is outside of useEffect to allow handleAccessTokenSuccess to work
   async function getAllAccounts() {
     try {
       let accounts = await ExpenseBudApi.getAllAccounts(currentUser.id);
@@ -35,10 +38,11 @@ function AccountList() {
     } catch (err) {
       console.error(err);
     }
+    setInfoLoaded(true);
   }
-  
-  useEffect(() => {
 
+  useEffect(() => {
+    setInfoLoaded(false);
     getAllAccounts();
   }, [])
 
@@ -46,6 +50,7 @@ function AccountList() {
     await getAllAccounts()
   }
   
+  if (!infoLoaded) return <LoadingSpinner />
 
   return (
   

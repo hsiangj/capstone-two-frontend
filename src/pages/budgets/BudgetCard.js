@@ -44,7 +44,7 @@ function BudgetCard({id, amount=null, category, category_id, edit, add}) {
     <>
       <TextField value={editAmount}/>
       <IconButton onClick={toggleEdit}>
-        <EditIcon fontSize="sm" />
+        <EditIcon fontSize="small" />
       </IconButton>
     </>
   )
