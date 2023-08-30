@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function AccountCard({ id, type, name, remove }) {
+function AccountCard({ id, type, name, remove, sync }) {
   return (
     <Card sx={{ minWidth: 10, width: 180 }} className='AccountList-card'>
       <CardContent>
@@ -17,6 +17,7 @@ function AccountCard({ id, type, name, remove }) {
         </Typography>
       </CardContent>
       <CardActions >
+        <Button size="small" color="success" onClick={()=>sync(id)}>Sync $</Button>
         <Button size="small" onClick={()=>remove(id)}>Remove</Button>
       </CardActions>
     </Card>

@@ -69,6 +69,11 @@ class ExpenseBudApi {
     return res.accessToken;
   }
 
+  static async transactionsSync(data) {
+    let res = await this.request('plaid/transactions/sync', data, 'post');
+    return res;
+  }
+
   static async getAccountNum(data) {
     let res = await this.request('plaid/auth/get', data, 'post');
     return res;

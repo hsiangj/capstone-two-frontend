@@ -30,6 +30,17 @@ function AccountList() {
     }
   }
 
+  const syncTransactions = async (accountId) => {
+    try {
+      let access_token = accounts.filter(account => account.id === accountId)[0].access_token;
+      console.log('inside syncTransactions', access_token)
+      await ExpenseBudApi.transactionsSync({access_token})
+    } catch (err) {
+      console.log(err)
+      return {success: false, err}
+    }
+  }
+
   //function is outside of useEffect to allow handleAccessTokenSuccess to work
   async function getAllAccounts() {
     try {
@@ -70,6 +81,7 @@ function AccountList() {
           type={account.account_type}
           name={account.institution_name}
           remove={deleteAccount}
+          sync={syncTransactions}
       />    
       )))
       : <h3>There are currently no accounts.</h3> 
