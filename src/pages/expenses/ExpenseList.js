@@ -28,12 +28,31 @@ function ExpenseList() {
   const addExpense = async(newExpense) => {
     try {
       await ExpenseBudApi.addExpense(currentUser.id, newExpense);
-      getAllExpenses()
+      getAllExpenses();
       return {success: true};
     } catch (err) {
       return {success: false, err};
     }
   } 
+  // future implementation
+  // const editExpense = async(editData) => {
+  //   try {
+  //     await ExpenseBudApi.editExpense(currentUser.id, editData);
+  //     getAllExpenses();
+  //     return {success: true};
+  //   } catch (err) {
+  //     return {success: false, err};
+  //   }
+  // }
+  const deleteExpense = async(expenseId) => {
+    try {
+      await ExpenseBudApi.deleteExpense(currentUser.id, expenseId);
+      getAllExpenses();
+      return {success: true};
+    } catch (err) {
+      return {success: false, err};
+    }
+  }
 
   useEffect(() => {
     getAllExpenses();
@@ -46,7 +65,7 @@ function ExpenseList() {
       </Typography>
       <ExpenseForm add={addExpense}/>
       {expenses.length
-      ? (<ExpenseTable data={expenses}/>)
+      ? (<ExpenseTable data={expenses} deleteExpense={deleteExpense} />)
       : <h3>There are currently no expense transactions.</h3>
       }
     </div>

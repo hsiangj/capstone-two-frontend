@@ -12,12 +12,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
+import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
-function ExpenseTable({data}) {
+function ExpenseTable({data, deleteExpense}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
+  
   const reformattedData = data.map(item => {
     const parsedDate = new Date(item.date);
     const reformattedDate = format(parsedDate, "yyyy-MM-dd");
@@ -44,6 +45,7 @@ function ExpenseTable({data}) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   return (
     <Paper sx={{ width: '90%', mt: 4, overflowX: 'auto'}}>
       <TableContainer sx={{ width: '100%', maxHeight: '70vh' }}>
@@ -61,16 +63,19 @@ function ExpenseTable({data}) {
               .map((row) => (
                 <TableRow key={row.id}>
                   {columns.map((column) => (
-                    <TableCell key={column.id}>{row[column.id]}</TableCell>
+                    <TableCell key={column.id}>
+                      {row[column.id]}
+                    </TableCell>
                   ))}
                   <TableCell>
-                    <IconButton>
+                    {/* <IconButton>
                       <EditIcon fontSize="small" />
-                    </IconButton>
-                    <IconButton>
+                    </IconButton> */}   
+                    <IconButton onClick={()=> deleteExpense(row.id)}>
                       <DeleteIcon fontSize="small" />
                     </IconButton>
                   </TableCell>
+
                 </TableRow>
               ))}
           </TableBody>

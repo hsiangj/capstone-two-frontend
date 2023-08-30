@@ -95,6 +95,16 @@ class ExpenseBudApi {
     let res = await this.request(`users/${userId}/expenses`, data, 'post');
     return res.expense;
   }
+
+  static async editExpense(userId, expenseId, data) {
+    let res = await this.request(`users/${userId}/expenses/${expenseId}`, data, 'patch');
+    return res.expense;
+  }
+
+  static async deleteExpense(userId, expenseId, data) {
+    let res = await this.request(`users/${userId}/expenses/${expenseId}`, data, 'delete');
+    return res.deleted;
+  }
 }
 
 export default ExpenseBudApi;
