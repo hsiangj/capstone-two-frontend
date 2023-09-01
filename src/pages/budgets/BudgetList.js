@@ -4,7 +4,6 @@ import UserContext from "../../context/UserContext";
 import ExpenseBudApi from "../../api/api";
 import BudgetCard from "./BudgetCard";
 
-import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 
 function BudgetList() {
@@ -61,7 +60,9 @@ function BudgetList() {
       <Typography component="h1" variant="h5">
             Budgets
       </Typography>
-
+      <Typography variant="subtitle1" gutterBottom>
+        Enter a positive number in each of the category to set a desired budget.
+      </Typography>
         {budgets.map(b => (
           <BudgetCard 
             key={b.category} 
@@ -74,7 +75,6 @@ function BudgetList() {
           />
          
         ))}
-   
     </div>
     
     

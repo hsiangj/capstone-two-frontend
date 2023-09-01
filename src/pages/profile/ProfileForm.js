@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 
 import UserContext from "../../context/UserContext";
 import ExpenseBudApi from "../../api/api";
+import FlashMsg from "../../components/FlashMsg";
 import errorMap from "../../utils/errorMap";
 
 import './ProfileForm.css';
@@ -10,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
 
 
 function ProfileForm() {
@@ -137,7 +137,7 @@ function ProfileForm() {
           Save Changes
         </Button>
       </Box>
-      {saveStatus && <Alert severity="success">Changes updated successfully.</Alert>}
+      {saveStatus && <FlashMsg type='success' message='Changes updated successfully.' />}
     </Container>
     
   )

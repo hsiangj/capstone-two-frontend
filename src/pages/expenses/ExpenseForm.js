@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-import ExpenseBudApi from "../../api/api";
+import FlashMsg from "../../components/FlashMsg";
 import errorMap from "../../utils/errorMap";
 
-import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MenuItem from "@mui/material/MenuItem";
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
 
 const INITIAL_STATE = {
   amount: '',
@@ -67,10 +65,10 @@ function ExpenseForm({add}) {
 
   return (
     <div>
-      <Typography component="h5">
-            Add new expense transaction: 
+      <Typography variant="subtitle1" gutterBottom>
+        Add a new transaction in the form below: 
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: 450 }}>
         <TextField
           margin="dense"
           autoFocus
@@ -150,12 +148,12 @@ function ExpenseForm({add}) {
         <Button
           type="submit"
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 1, mb: 2 }}
         >
           Add
         </Button>
       </Box>
-      {saveStatus && <Alert severity="success">Expense added!</Alert>}
+      {saveStatus && <FlashMsg type='success' message='Expense added!' />}
     </div>
   ) 
 }

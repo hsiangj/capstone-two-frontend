@@ -5,6 +5,7 @@ import ExpenseBudApi from "../../api/api";
 import ExpenseTable from "./ExpenseTable";
 import ExpenseForm from "./ExpenseForm";
 
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 function ExpenseList() {
@@ -63,11 +64,13 @@ function ExpenseList() {
       <Typography component="h1" variant="h5">
         Expenses
       </Typography>
-      <ExpenseForm add={addExpense}/>
-      {expenses.length
-      ? (<ExpenseTable data={expenses} deleteExpense={deleteExpense} />)
-      : <h3>There are currently no expense transactions.</h3>
-      }
+      <Box sx={{ display: 'flex', flexDirection: 'column',  alignItems: 'center'}}> 
+        <ExpenseForm add={addExpense}/>
+        {expenses.length
+        ? (<ExpenseTable data={expenses} deleteExpense={deleteExpense} />)
+        : <h3>There are currently no expense transactions.</h3>
+        }
+      </Box>
     </div>
   )
 }
