@@ -15,9 +15,9 @@ import TablePagination from '@mui/material/TablePagination';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
-function ExpenseTable({data, deleteExpense}) {
+function ExpenseTable({data, deleteExpense, showPagination=true, numRows=5}) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(numRows);
   
   const reformattedData = data.map(item => {
     const parsedDate = new Date(item.date);
@@ -49,7 +49,7 @@ function ExpenseTable({data, deleteExpense}) {
   return (
     <Paper sx={{ width: '90%', mt: 4, overflowX: 'auto'}}>
       <TableContainer sx={{ width: '100%', maxHeight: '70vh' }}>
-        <Table sx={{ minWidth: 100 }}>
+        <Table size="small" sx={{ minWidth: 100 }}>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -70,10 +70,13 @@ function ExpenseTable({data, deleteExpense}) {
                   <TableCell>
                     {/* <IconButton>
                       <EditIcon fontSize="small" />
-                    </IconButton> */}   
-                    <IconButton onClick={()=> deleteExpense(row.id)}>
+                    </IconButton> */}  
+                    {deleteExpense && (
+                      <IconButton onClick={()=> deleteExpense(row.id)}>
                       <DeleteIcon fontSize="small" />
                     </IconButton>
+                    )} 
+                    
                   </TableCell>
 
                 </TableRow>
@@ -81,7 +84,8 @@ function ExpenseTable({data, deleteExpense}) {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
+      {showPagination && (
+        <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={data.length}
@@ -90,6 +94,7 @@ function ExpenseTable({data, deleteExpense}) {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      )}
     </Paper>
   );
   

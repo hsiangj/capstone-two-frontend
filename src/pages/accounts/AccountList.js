@@ -33,7 +33,6 @@ function AccountList() {
   const syncTransactions = async (accountId) => {
     try {
       let access_token = accounts.filter(account => account.id === accountId)[0].access_token;
-      console.log('inside syncTransactions', access_token)
       await ExpenseBudApi.transactionsSync({access_token})
     } catch (err) {
       console.log(err)

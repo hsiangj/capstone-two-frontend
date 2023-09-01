@@ -4,8 +4,6 @@ import { usePlaidLink } from 'react-plaid-link';
 import ExpenseBudApi from './api/api';
 
 function PlaidAuth({plaidData, onLinkSuccess}) {
-  
-  const [account, setAccounts] = useState();
   const [accessToken, setAccessToken] = useState();
 
   useEffect(() => {
@@ -19,17 +17,8 @@ function PlaidAuth({plaidData, onLinkSuccess}) {
         if (onLinkSuccess) {
           onLinkSuccess();
         }
-        // console.debug('access token:', accessToken);
-        // let auth = await ExpenseBudApi.getAccountNum({ access_token: accessToken });
-        // console.log(auth)
-        // setAccounts(auth.numbers.ach[0]);
-
-        // let transactions = await axios.post(`${BASE_URL}/plaid/transactions/sync`, {
-        //   access_token: accessToken.data.accessToken 
-        // });
-        //   console.log(transactions)
       } catch(e) {
-      console.log('failed', e)
+      console.error('failed', e)
       }
     } 
      
@@ -37,8 +26,6 @@ function PlaidAuth({plaidData, onLinkSuccess}) {
   }, [])
   return accessToken && (<PlaidLink />)
 }
-
-
 
 
 
