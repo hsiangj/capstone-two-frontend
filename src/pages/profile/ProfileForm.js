@@ -137,7 +137,7 @@ function ProfileForm() {
           Save Changes
         </Button>
       </Box>
-      {saveStatus && <FlashMsg type='success' message='Changes updated successfully.' />}
+      {saveStatus && <FlashMsg type='success' messages={['Changes updated successfully.']} />}
     </Container>
     
   )

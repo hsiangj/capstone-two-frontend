@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 
 import UserContext from '../../context/UserContext';
-import PlaidLink from '../../PlaidLink';
+import PlaidLink from './PlaidLink';
 import ExpenseBudApi from '../../api/api';
 import AccountCard from './AccountCard';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import FlashMsg from '../../components/FlashMsg';
 
 import './AccountList.css';
 import Typography from '@mui/material/Typography';
+
 
 function AccountList() {
   const {currentUser} = useContext(UserContext);
@@ -33,9 +35,9 @@ function AccountList() {
   const syncTransactions = async (accountId) => {
     try {
       let access_token = accounts.filter(account => account.id === accountId)[0].access_token;
-      await ExpenseBudApi.transactionsSync({access_token})
+      await ExpenseBudApi.transactionsSync({access_token, accountId})
+      return {success: true}
     } catch (err) {
-      console.log(err)
       return {success: false, err}
     }
   }
@@ -69,20 +71,26 @@ function AccountList() {
       Accounts
     </Typography>
     <div className='AccountList-add-account'>
+      <FlashMsg type='info' messages={["The button below currently links to Plaid's sandbox mode. If prompted for username and password, username= user_good, password= pass_good"]}/>
       <PlaidLink onLinkSuccess={handleAccessTokenSuccess}/>
     </div>
+
+    <Typography variant="subtitle1">
+      Click 'sync transactions' to automatically import transactions. Go to Expenses tab to view import.
+    </Typography>
+
     <div className='AccountList-card-group'>
-    {accounts.length
-      ? ( accounts.map(account => (
-          <AccountCard 
-          key={account.id}
-          id={account.id}
-          type={account.account_type}
-          name={account.institution_name}
-          remove={deleteAccount}
-          sync={syncTransactions}
-      />    
-      )))
+      {accounts.length
+        ? ( accounts.map(account => (
+            <AccountCard 
+            key={account.id}
+            id={account.id}
+            type={account.account_type}
+            name={account.institution_name}
+            remove={deleteAccount}
+            sync={syncTransactions}
+        />    
+        )))
       : <h3>There are currently no accounts.</h3> 
         
      }

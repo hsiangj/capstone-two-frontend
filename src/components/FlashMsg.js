@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 
-function FlashMsg({type='error', message}) {
+function FlashMsg({type='error', messages=[]}) {
   const [open, setOpen] = useState(true);
 
   return (
-    open && 
-    <Alert variant="outlined" severity={type} onClose={() => {setOpen(false)}}> {message} 
-    </Alert> 
-    
+    open && messages.map(message => (
+      <Alert variant="outlined" severity={type} onClose={() => {setOpen(false)}}key={message}> 
+      {message}
+      </Alert> 
+
+    ))
   )
 }
 

@@ -91,11 +91,11 @@ function LoginForm({login}) {
               {"Don't have an account? Register"}
             </Link>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Link href="#" variant="body2">
               {"Forgot password?"}
             </Link>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     

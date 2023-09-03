@@ -81,8 +81,8 @@ function BudgetCard({id, amount=null, category, category_id, edit, add}) {
       </Typography>
       {jsx}
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      {formError && <FlashMsg type='error' message='Please enter a valid number and try again.' />}
-      {saveStatus && <FlashMsg type='success' message='Budget saved.' />}
+      {formError && <FlashMsg type='error' messages={['Please enter a valid number and try again.']} />}
+      {saveStatus && <FlashMsg type='success' messages={['Budget saved.']} />}
       </Box>
     </Box>
   )

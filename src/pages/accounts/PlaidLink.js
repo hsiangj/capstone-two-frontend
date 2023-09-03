@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { usePlaidLink } from 'react-plaid-link';
 
-import ExpenseBudApi from './api/api';
+import ExpenseBudApi from '../../api/api';
+
+import Button from '@mui/material/Button';
 
 function PlaidAuth({plaidData, onLinkSuccess}) {
   const [accessToken, setAccessToken] = useState();
@@ -58,9 +60,9 @@ function PlaidLink({onLinkSuccess}) {
   });
     
   return publicToken ? (<PlaidAuth plaidData={plaidData} onLinkSuccess={onLinkSuccess}/>) : (
-    <button onClick={() => open()} disabled={!ready}>
+    <Button onClick={() => open()} disabled={!ready} variant="outlined" sx={{mt: 2}}>
       Connect a bank account
-    </button>
+    </Button>
   );
 
 }

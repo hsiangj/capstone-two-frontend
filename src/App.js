@@ -10,7 +10,10 @@ import useLocalStorage from './hooks/useLocalStorage';
 import Routes from './routes/Routes';
 import NavWithDrawer from './components/NavWithDrawer';
 import LoadingSpinner from './components/LoadingSpinner';
+import Footer from './components/Footer';
+import theme from './theme/theme';
 
+import { ThemeProvider } from '@mui/material/styles';
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
@@ -77,8 +80,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={{currentUser, setCurrentUser}}>
-          <NavWithDrawer logout={logout}/>
-          <Routes register={register} login={login} />
+          <ThemeProvider theme={theme}>
+            <NavWithDrawer logout={logout}/>
+            <Routes register={register} login={login} />
+            <Footer />
+          </ThemeProvider>
         </UserContext.Provider>
       </BrowserRouter>
     </div>

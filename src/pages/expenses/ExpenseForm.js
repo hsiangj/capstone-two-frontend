@@ -60,12 +60,11 @@ function ExpenseForm({add}) {
       setFormErrors(errors);
     }
     }
-  
 
 
   return (
     <div>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography variant="subtitle1">
         Add a new transaction in the form below: 
       </Typography>
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: 450 }}>
@@ -153,7 +152,7 @@ function ExpenseForm({add}) {
           Add
         </Button>
       </Box>
-      {saveStatus && <FlashMsg type='success' message='Expense added!' />}
+      {saveStatus && <FlashMsg type='success' messages={['Expense added!']} />}
     </div>
   ) 
 }

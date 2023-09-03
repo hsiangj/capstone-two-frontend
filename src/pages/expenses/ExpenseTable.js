@@ -72,7 +72,7 @@ function ExpenseTable({data, deleteExpense, showPagination=true, numRows=5}) {
                       <EditIcon fontSize="small" />
                     </IconButton> */}  
                     {deleteExpense && (
-                      <IconButton onClick={()=> deleteExpense(row.id)}>
+                    <IconButton onClick={()=> deleteExpense(row.id)}>
                       <DeleteIcon fontSize="small" />
                     </IconButton>
                     )} 

@@ -1,16 +1,27 @@
+.Home {
+  margin: 0;
+  padding: 0;
+
+}
 .Home-grid {
   display: flex;
   align-items: center;
   height: 80vh;
-  margin-left: 1.5em;
   margin-right: 1.5em;
+  
 } 
 
 .Home h1 {
-  font-size: 3.5em;
+  font-size: 2em;
 }
 
 .Home a {
   color: black;
 }
 
+.Home-grid-img {
+  width: 100vw;
+  height: calc(100vh - 64px); /* minus navbar height */
+  background-image: url('./background.jpg');
+  background-size: cover;
+}

@@ -1,11 +1,31 @@
+import { useState } from 'react';
+
+import FlashMsg from '../../components/FlashMsg';
+
 import './AccountList.css';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 function AccountCard({ id, type, name, remove, sync }) {
+  const [syncError, setSyncError] = useState([]);
+  const [syncConfirmed, setSyncConfirmed] = useState(false);
+
+  const syncTransactions = async (bankId) => {
+    let syncResult = await sync(bankId);
+    if (!syncResult.success) {
+      setSyncError(syncResult.err);
+    } else {
+      setSyncConfirmed(true);
+    }
+    
+  }
+
   return (
     <Card sx={{ minWidth: 10, width: 180 }} className='AccountList-card'>
       <CardContent>
@@ -17,9 +37,16 @@ function AccountCard({ id, type, name, remove, sync }) {
         </Typography>
       </CardContent>
       <CardActions >
-        <Button size="small" color="success" onClick={()=>sync(id)}>Sync $</Button>
-        <Button size="small" onClick={()=>remove(id)}>Remove</Button>
+        <Button size="small" color="success" sx={{textAlign: 'left'}} onClick={()=>syncTransactions(id)}>Sync transactions</Button>
+        
+        <Tooltip title='Deleting account will also remove all associated expense transactions.'>
+          <IconButton onClick={()=>remove(id)}>
+            <DeleteIcon fontSize="small"/>
+          </IconButton>
+        </Tooltip>
       </CardActions>
+      {syncError && <FlashMsg type='error' messages={syncError} />}
+      {syncConfirmed && <FlashMsg type='success' messages={['Sync success.']} />}
     </Card>
   )
 }

@@ -7,7 +7,7 @@
   display: flex; 
   justify-content: space-between;
   align-items: center;
-  margin: 30px;
+  margin: 20px;
 }
 
 .Dashboard-bar {
@@ -19,8 +19,9 @@
 }
 
 .Dashboard-table {
+
  width: 90%;
- margin: 30px;
+ margin: 0 auto;
 }  
 
 @media (max-width: 768px) {

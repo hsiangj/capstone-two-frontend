@@ -27,6 +27,7 @@ function Navbar({logout, drawerWidth, handleDrawerToggle}) {
         component="nav"
         position="fixed"
         sx={{
+          backgroundColor: '#045681',
           width: currentUser? { sm: `calc(100% - ${drawerWidth}px)` } : {},
           ml: currentUser? { sm: `${drawerWidth}px` } : {},
         }}

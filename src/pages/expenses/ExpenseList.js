@@ -64,7 +64,7 @@ function ExpenseList() {
       <Typography component="h1" variant="h5">
         Expenses
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'column',  alignItems: 'center'}}> 
+      <Box sx={{ display: 'flex', flexDirection: 'column',  justifyContent: 'center', alignItems: 'center'}}> 
         <ExpenseForm add={addExpense}/>
         {expenses.length
         ? (<ExpenseTable data={expenses} deleteExpense={deleteExpense} />)
