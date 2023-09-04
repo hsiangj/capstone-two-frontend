@@ -9,6 +9,7 @@ import BudgetList from '../pages/budgets/BudgetList';
 import AccountList from '../pages/accounts/AccountList';
 import ExpenseList from '../pages/expenses/ExpenseList';
 import Main from '../components/Main';
+import PrivateRoute from './PrivateRoute';
 
 function Routes({register, login}) {
   return (
@@ -25,35 +26,35 @@ function Routes({register, login}) {
         <LoginForm login={login} />
       </Route>
 
-      <Route exact path="/dashboard">
+      <PrivateRoute exact path="/dashboard">
         <Main>
         <Dashboard />
         </Main>
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/budgets">
+      <PrivateRoute exact path="/budgets">
         <Main>
         <BudgetList />
         </Main>
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/accounts">
+      <PrivateRoute exact path="/accounts">
         <Main>
         <AccountList />
         </Main>
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/expenses">
+      <PrivateRoute exact path="/expenses">
         <Main>
         <ExpenseList />
         </Main>
-      </Route>
+      </PrivateRoute>
 
-      <Route exact path="/profile">
+      <PrivateRoute exact path="/profile">
         <Main>
         <ProfileForm />
         </Main>
-      </Route>
+      </PrivateRoute>
 
       <Redirect to="/" />
     </Switch>
