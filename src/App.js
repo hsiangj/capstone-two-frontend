@@ -20,13 +20,6 @@ function App() {
   const [userToken, setUserToken] = useLocalStorage("expensebud_token");
   const [currentUser, setCurrentUser] = useState(null);
 
-  console.debug(
-    "App",
-    "infoLoaded=", infoLoaded,
-    "currentUser=", currentUser,
-    "userToken=", userToken,
-  );
-
   async function register(registerData){
     try {
       let result = await ExpenseBudApi.register(registerData);
