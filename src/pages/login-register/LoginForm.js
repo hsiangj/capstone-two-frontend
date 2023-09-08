@@ -87,7 +87,7 @@ function LoginForm({login}) {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link href="/login" variant="body2">
+            <Link href="/register" variant="body2">
               {"Don't have an account? Register"}
             </Link>
           </Grid>
