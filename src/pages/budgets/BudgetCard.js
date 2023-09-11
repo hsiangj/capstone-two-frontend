@@ -17,13 +17,6 @@ function BudgetCard({id, amount=null, category, category_id, edit, add}) {
   const [formError, setFormError] = useState(false);
   const [saveStatus, setSaveStatus] = useState(false);
 
-  console.debug(
-    "BudgetCard",
-    "budgets=", 
-    "editAmount=", editAmount,
-    "isEditing=", isEditing
-  )
-
   const toggleEdit = () => {
     setIsEditing(!isEditing);
   }

@@ -34,12 +34,6 @@ function ExpenseForm({add}) {
   const [formErrors, setFormErrors] = useState({});
   const [saveStatus, setSaveStatus] = useState(false);
 
-  console.debug(
-    "ExpenseForm",
-    "formData=", formData,
-    "formErrors=", formErrors
-  )
-  
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData(data => ({...data, [name]: value}));

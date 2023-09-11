@@ -11,11 +11,6 @@ import Typography from '@mui/material/Typography';
 function ExpenseList() {
   const { currentUser } = useContext(UserContext);
   const [expenses, setExpenses] = useState([]);
-
-  console.debug(
-    "ExpenseList",
-    "expenses=", expenses
-  )
   
   async function getAllExpenses() {
     try {

@@ -21,11 +21,6 @@ function Dashboard() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [loadingErrors, setLoadingErrors] = useState([]);
 
-  console.debug(
-    "Dashboard",
-    "expenses=", expenses,
-    "budgets=", budgets,
-  )
 
   useEffect(() => {
     async function getAllExpenses() {

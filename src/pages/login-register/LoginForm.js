@@ -20,12 +20,6 @@ function LoginForm({login}) {
   const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
 
-  console.debug(
-    "LoginForm",
-    "formData=", formData,
-    "formErrors=", formErrors,
-  )
-
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData(data => ({...data, [name]: value}));

@@ -24,12 +24,6 @@ function RegisterForm({register}) {
   const [formErrors, setFormErrors] = useState({});
   const history = useHistory();
 
-  console.debug(
-    "RegisterForm",
-    "formData=", formData,
-    "formErrors=", formErrors,
-  )
-
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData(data => ({...data, [name]: value}));

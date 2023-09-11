@@ -10,11 +10,6 @@ function BudgetList() {
   const { currentUser } = useContext(UserContext);
   const [budgets, setBudgets] = useState([]);
 
-  console.debug(
-    "BudgetList",
-    "budgets=", budgets
-  )
-
   const editBudget = async(budgetId, editData) => {
     try {
       await ExpenseBudApi.updateBudget(currentUser.id, budgetId, editData);

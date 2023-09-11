@@ -16,12 +16,6 @@ function AccountList() {
   const [accounts, setAccounts] = useState([]);
   const [infoLoaded, setInfoLoaded] = useState(false);
 
-  console.debug(
-    "AccountList",
-    "currentUser", currentUser,
-    "accounts=", accounts
-  )
-
   const deleteAccount = async (accountId) => {
     try {
       await ExpenseBudApi.deleteAccount(currentUser.id, accountId);
