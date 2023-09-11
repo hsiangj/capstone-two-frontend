@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { format, parseISO } from "date-fns";
+import { parseISO } from 'date-fns';
+import { format, utcToZonedTime } from 'date-fns-tz';
 
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,7 +21,7 @@ function ExpenseTable({data, deleteExpense, showPagination=true, numRows=5}) {
   const [rowsPerPage, setRowsPerPage] = useState(numRows);
   
   const reformattedData = data.map(item => {
-    const parsedDate = parseISO(item.date);
+    const parsedDate = utcToZonedTime(parseISO(item.date), 'UTC');
     const reformattedDate = format(parsedDate, "yyyy-MM-dd");
     
     return {
