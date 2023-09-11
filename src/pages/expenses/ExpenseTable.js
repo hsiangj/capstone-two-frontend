@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,7 +20,7 @@ function ExpenseTable({data, deleteExpense, showPagination=true, numRows=5}) {
   const [rowsPerPage, setRowsPerPage] = useState(numRows);
   
   const reformattedData = data.map(item => {
-    const parsedDate = new Date(item.date);
+    const parsedDate = parseISO(item.date);
     const reformattedDate = format(parsedDate, "yyyy-MM-dd");
     
     return {

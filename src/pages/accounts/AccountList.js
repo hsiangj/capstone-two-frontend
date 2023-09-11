@@ -70,7 +70,7 @@ function AccountList() {
     </div>
 
     <Typography variant="subtitle1">
-      After an account is connected, click 'sync transactions' to automatically import transactions. Go to Expenses tab to view import.
+      After an account is connected, click 'sync transactions' to import transactions. Go to Expenses tab to view import.
     </Typography>
 
     <div className='AccountList-card-group'>
