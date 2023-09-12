@@ -7,6 +7,22 @@ This repository is completed as part of capstone two of Springboard Software Eng
 
 View the application [here](https://expensebud.onrender.com/ "ExpenseBud") on Render. Best viewed on desktop. 
 
+### Preview
+Home page before signup/login    
+<img src="/public/screenshots/home.png" alt="ExpenseBud homepage" width="auto" height="250px">
+
+User dashboard  
+<img src="/public/screenshots/dashboard.png" alt="ExpenseBud dashboard" width="auto" height="250px">
+
+Accounts page to connect with financial institution   
+<img src="/public/screenshots/accounts.png" alt="ExpenseBud accounts page" width="auto" height="250px">
+
+Plaid interface  
+<img src="/public/screenshots/plaid.png" alt="Plaid link" width="auto" height="250px">
+
+Expenses page  
+<img src="/public/screenshots/expenses.png" alt="ExpenseBud expenses page" width="auto" height="250px">
+
 ### Technology Stack & Tools
 #### Frontend
 * React
@@ -21,22 +37,6 @@ View the application [here](https://expensebud.onrender.com/ "ExpenseBud") on Re
 #### Others
 * Axios
 * JWT
-
-### Preview
-Home page before signup/login    
-<img src="/screenshots/home.png" alt="ExpenseBud homepage" width="auto" height="250px">
-
-User dashboard  
-<img src="/screenshots/dashboard.png" alt="ExpenseBud dashboard" width="auto" height="250px">
-
-Accounts page to connect with financial institution   
-<img src="/screenshots/accounts.png" alt="ExpenseBud accounts page" width="auto" height="250px">
-
-Plaid interface  
-<img src="/screenshots/plaid.png" alt="Plaid link" width="auto" height="250px">
-
-Expenses page  
-<img src="/screenshots/expenses.png" alt="ExpenseBud expenses page" width="auto" height="250px">
 
 ### Features
 * Data visualization: pie chart to visualize expense distribution and column chart to visualize total expenses compared to budget goals.
