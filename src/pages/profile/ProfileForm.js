@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import UserContext from "../../context/UserContext";
 import ExpenseBudApi from "../../api/api";
 import FlashMsg from "../../components/FlashMsg";
+import DialogModal from "../../components/DialogModal";
 import errorMap from "../../utils/errorMap";
 
 import './ProfileForm.css';
@@ -62,6 +63,14 @@ function ProfileForm() {
     setCurrentUser(updatedUser);
   }
 
+  const handleDelete = async() => {
+    try {
+      await ExpenseBudApi.deleteUser(currentUser.id);
+      setCurrentUser(null);
+    } catch (err) {
+      return {success: false, err};
+    }
+  }
 
   return (
     <Container maxWidth="xs" className="ProfileForm">
@@ -136,6 +145,12 @@ function ProfileForm() {
         >
           Save Changes
         </Button>
+        <DialogModal 
+          buttonMsg="Delete Account"
+          title="Delete Account?"
+          content="Deleting your account will delete your access and all your information on this site."
+          handleDelete={handleDelete}
+        />
       </Box>
       {saveStatus && <FlashMsg type='success' messages={['Changes updated successfully.']} />}
     </Container>

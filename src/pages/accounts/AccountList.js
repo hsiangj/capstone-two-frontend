@@ -92,8 +92,8 @@ function AccountList() {
         
      }
      {!syncLoading && (
-      <div>
-        <span>Transactions syncing...</span>
+      <div className='AccountList-sync-loading'> 
+        <span>Syncing... &nbsp;</span>
         <CircularProgress />
       </div>
       )}

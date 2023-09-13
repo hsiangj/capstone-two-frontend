@@ -40,6 +40,11 @@ class ExpenseBudApi {
     return res.user;
   }
 
+  static async deleteUser(id, data){
+    let res = await this.request(`users/${id}`, data, 'delete');
+    return res.deleted;
+  }
+
   /** Budget */
 
   static async getAllBudgets(id) {
