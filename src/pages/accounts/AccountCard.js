@@ -7,27 +7,31 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-function AccountCard({ id, type, name, remove, sync }) {
+function AccountCard({ id, type, name, remove, sync, setSyncLoading }) {
   const [syncError, setSyncError] = useState([]);
   const [syncConfirmed, setSyncConfirmed] = useState(false);
-
+  
   const syncTransactions = async (bankId) => {
+    setSyncError(false);
+    setSyncLoading(false);
     let syncResult = await sync(bankId);
+    setSyncLoading(true);
     if (!syncResult.success) {
       setSyncError(syncResult.err);
     } else {
-      setSyncConfirmed(true);
+      setSyncConfirmed(true); 
     }
-    
-  }
+  } 
+  
 
   return (
-    <Card sx={{ minWidth: 10, width: 180 }} className='AccountList-card'>
+    <Card sx={{ minWidth: 10, width: 190 }} className='AccountList-card'>
       <CardContent>
         <Typography>
           {name}
@@ -45,7 +49,9 @@ function AccountCard({ id, type, name, remove, sync }) {
           </IconButton>
         </Tooltip>
       </CardActions>
-      {syncError && <FlashMsg type='error' messages={syncError} />}
+      {syncError.length
+        ? <FlashMsg type='warning' messages={["Transactions already synced."]} />
+        : null}
       {syncConfirmed && <FlashMsg type='success' messages={['Sync success.']} />}
     </Card>
   )

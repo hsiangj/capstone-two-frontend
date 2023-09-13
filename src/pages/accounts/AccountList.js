@@ -8,6 +8,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import FlashMsg from '../../components/FlashMsg';
 
 import './AccountList.css';
+import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 
 
@@ -15,6 +16,7 @@ function AccountList() {
   const {currentUser} = useContext(UserContext);
   const [accounts, setAccounts] = useState([]);
   const [infoLoaded, setInfoLoaded] = useState(false);
+  const [syncLoading, setSyncLoading] = useState(true);
 
   const deleteAccount = async (accountId) => {
     try {
@@ -29,7 +31,7 @@ function AccountList() {
   const syncTransactions = async (accountId) => {
     try {
       let access_token = accounts.filter(account => account.id === accountId)[0].access_token;
-      await ExpenseBudApi.transactionsSync({access_token, accountId})
+      await ExpenseBudApi.transactionsSync({access_token, accountId});
       return {success: true}
     } catch (err) {
       return {success: false, err}
@@ -83,12 +85,20 @@ function AccountList() {
             name={account.institution_name}
             remove={deleteAccount}
             sync={syncTransactions}
+            setSyncLoading={setSyncLoading}
         />    
         )))
       : <h3>There are currently no accounts.</h3> 
         
      }
-    </div>
+     {!syncLoading && (
+      <div>
+        <span>Transactions syncing...</span>
+        <CircularProgress />
+      </div>
+      )}
+    </div> 
+    
   </div>
   
   )
